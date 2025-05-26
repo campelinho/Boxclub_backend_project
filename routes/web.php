@@ -7,7 +7,8 @@ use App\Http\Controllers\ProfielController;
 use App\Http\Controllers\NieuwsController;
 use App\Http\Controllers\FaqCategorieController;
 use App\Http\Controllers\FaqVraagController;
-
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\VraagController;
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -24,4 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('faq-categorie', FaqCategorieController::class);
 
     Route::resource('faq-vraag', FaqVraagController::class);
+    
+    Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
+    Route::resource('vraag', VraagController::class);
 });

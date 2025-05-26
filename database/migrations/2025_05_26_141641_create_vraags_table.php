@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('faq_categorieën', function (Blueprint $table) {
+        Schema::create('vraags', function (Blueprint $table) {
             $table->id();
-            $table->string('naam');
             $table->timestamps();
         });
     }
@@ -23,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('faq_categorieën');
+        Schema::dropIfExists('vraags');
     }
 };

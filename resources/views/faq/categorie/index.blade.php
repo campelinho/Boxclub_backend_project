@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -5,12 +6,14 @@
     <h2>FAQ Categorieën</h2>
 
     @if (session('status'))
-        <div class="alert alert-success">{{ session('status') }}</div>
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
     @endif
 
     <a href="{{ route('faq-categorie.create') }}" class="btn btn-primary mb-3">Nieuwe categorie toevoegen</a>
 
-    @if ($categorieën->count())
+    @if ($categorieen->count())
         <table class="table">
             <thead>
                 <tr>
@@ -19,25 +22,18 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($categorieën as $categorie)
+                @foreach ($categorieen as $categorie)
                     <tr>
                         <td>{{ $categorie->naam }}</td>
                         <td>
-                            <a href="{{ route('faq-categorie.edit', $categorie->id) }}" class="btn btn-warning btn-sm">Bewerken</a>
-
-                            <form action="{{ route('faq-categorie.destroy', $categorie->id) }}" method="POST" class="d-inline"
-                                onsubmit="return confirm('Weet je zeker dat je deze categorie wilt verwijderen?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Verwijderen</button>
-                            </form>
+                            <a href="{{ route('faq-categorie.edit', $categorie) }}" class="btn btn-warning btn-sm">Bewerken</a>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     @else
-        <p>Er zijn nog geen categorieën.</p>
+        <p>Geen categorieën gevonden.</p>
     @endif
 </div>
 @endsection

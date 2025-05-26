@@ -1,25 +1,16 @@
+
 @extends('layouts.app')
 
 @section('content')
 <div class="container">
-    <h2>Nieuwe categorie toevoegen</h2>
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul class="mb-0">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    <h2>Nieuwe FAQ Categorie</h2>
 
     <form action="{{ route('faq-categorie.store') }}" method="POST">
         @csrf
 
         <div class="mb-3">
-            <label for="naam" class="form-label">Categorie naam</label>
-            <input type="text" class="form-control" id="naam" name="naam" value="{{ old('naam') }}" required>
+            <label for="naam" class="form-label">Naam</label>
+            <input type="text" name="naam" id="naam" class="form-control" required>
         </div>
 
         <button type="submit" class="btn btn-success">Opslaan</button>
