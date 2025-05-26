@@ -21,13 +21,18 @@ class ProfielController extends Controller
             'gebruikersnaam' => 'nullable|string|max:255',
             'verjaardag' => 'nullable|date',
             'over_mij' => 'nullable|string',
+            'profielfoto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $gebruiker->update([
-            'gebruikersnaam' => $request->gebruikersnaam,
-            'verjaardag' => $request->verjaardag,
-            'over_mij' => $request->over_mij,
-        ]);
+        $data = $request->only(['gebruikersnaam', 'verjaardag', 'over_mij']);
+
+        if ($request->hasFile('profielfoto')) {
+            // Salva a imagem em storage/app/public/profielfotos
+            $pad = $request->file('profielfoto')->store('profielfotos', 'public');
+            $data['profielfoto'] = $pad;
+        }
+
+        $gebruiker->update($data);
 
         return redirect()->route('profiel.bewerken')->with('status', 'Profiel bijgewerkt!');
     }
