@@ -12,4 +12,10 @@ class FaqCategorie extends Model
     protected $table = 'faq_categorieën'; // <- ESSENCIAL!
 
     protected $fillable = ['naam'];
+
+    // 🔧 Aqui está o que faltava
+    public function vragen()
+    {
+        return $this->hasMany(FaqVraag::class, 'categorie_id');
+    }
 }

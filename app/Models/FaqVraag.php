@@ -9,14 +9,16 @@ class FaqVraag extends Model
 {
     use HasFactory;
 
+    protected $table = 'vragen'; 
+
     protected $fillable = [
-        'faq_categorie_id',
         'vraag',
         'antwoord',
+        
     ];
 
     public function categorie()
     {
-        return $this->belongsTo(FaqCategorie::class, 'faq_categorie_id');
+        return $this->belongsTo(FaqCategorie::class, );
     }
 }

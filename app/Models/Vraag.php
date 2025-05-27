@@ -12,10 +12,11 @@ class Vraag extends Model
 
     protected $table = 'vragen'; // <- Isso resolve o erro!
 
-    protected $fillable = ['vraag', 'antwoord', 'categorie_id'];
+    protected $fillable = ['vraag', 'antwoord', ];
 
-    public function categorie()
-    {
-        return $this->belongsTo(FaqCategorie::class, 'categorie_id');
-    }
+   public function categorie()
+{
+    return $this->belongsTo(FaqCategorie::class);
+}
+
 }
